@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="form" style="text-align:center; margin:10rem">
+ <h1>Welcome to my world</h1>
+  <form>
+    <div>
+      <label for="">name</label>
+      <input  type="text" [(ngModel)]="user.name" name="name" placeholder="name"  />
+      <label for="">password</label>
+      <input  type="text" [(ngModel)]="user.password" name="password"
+       placeholder="password"  />
+    </div>
+
+  </form>
+  <button (click)="add()">Submit</button>
+
+  <button (click)="showUsers()">Show Users</button>
+  <div></div>
+  <router-outlet></router-outlet>
+</div>

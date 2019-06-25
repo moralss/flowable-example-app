@@ -5,20 +5,20 @@ public class Article {
 
     private String id;
     private String author;
-    private String url;
+    private String title;
 
     public Article() {
     }
 
-    public Article(String author, String url) {
+    public Article(String author, String title) {
         this.author = author;
-        this.url = url;
+        this.title = title;
     }
 
-    public Article(String id, String author, String url) {
+    public Article(String id, String author, String title) {
         this.id = id;
         this.author = author;
-        this.url = url;
+        this.title = title;
     }
 
     public String getId() {
@@ -37,16 +37,16 @@ public class Article {
         this.author = author;
     }
 
-    public String getUrl() {
-        return url;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
     public String toString() {
-        return ("[" + this.author + " " + this.url + "]");
+        return ("[" + this.author + " " + this.title + "]");
     }
 }

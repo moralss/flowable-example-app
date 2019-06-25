@@ -26,7 +26,7 @@ public class ArticleWorkflowService {
     public void startProcess(Article article) {
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("author", article.getAuthor());
-        variables.put("url", article.getUrl());
+        variables.put("title", article.getTitle());
         runtimeService.startProcessInstanceByKey("articleReview", variables);
     }
 
@@ -40,7 +40,7 @@ public class ArticleWorkflowService {
                 .map(task -> {
                     Map<String, Object> variables = taskService.getVariables(task.getId());
                     return new Article(
-                            task.getId(), (String) variables.get("author"), (String) variables.get("url"));
+                            task.getId(), (String) variables.get("author"), (String) variables.get("title"));
                 })
                 .collect(Collectors.toList());
         return articles;

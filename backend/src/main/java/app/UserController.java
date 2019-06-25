@@ -15,6 +15,7 @@ public class UserController {
     @Autowired
     private ArticleWorkflowService service;
 
+    @CrossOrigin
     @PostMapping("/submit")
     public void submit(@RequestBody Article article) {
         service.startProcess(article);

@@ -1,4 +1,4 @@
 export interface User {
-    name : string,
-    password:string
+    author : string,
+    title:string
 }

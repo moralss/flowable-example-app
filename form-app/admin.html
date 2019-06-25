@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>show articles</h1>
+    <button onclick="showOutStanding()">show outstanding books</button>
+
+    <div id="output"></div>
+  </body>
+
+  <script>
+        var currentBooks = [];
+        var output = document.getElementById("output");
+        let showOutStanding = async () => {
+          try {
+            const books  = await axios.get("http://localhost:3003/tasks", {
+              params: {
+                assignee: "editors"
+              }
+            });
+
+            currentBooks.push(...books.data);
+
+            for (var i in books.data) {
+                console.log("books" , books.data[i])
+              output.innerHTML += `<li>title ${books.data[i].title} and
+                 author ${books.data[i].author}
+                 <button onclick="submitReview(${[i]})"> approval book</button>
+                 <button onclick="submitReview(${[i]})"> reject book</button>
+                 </li>`
+
+                }
+
+          } catch (e) {
+            console.log(e);
+          }
+        };
+
+    let  submitReview = async (id)  => {
+            console.log(id);
+            console.log("currentBooks" , currentBooks)
+            console.log(currentBooks[id]);
+            try {
+            await axios.post("http://localhost:3003/review", {
+                id: currentBooks[id].id,
+                status:true
+            });
+          } catch (e) {
+            console.log(e);
+          }
+
+        }
+
+        // for(var book of showOutStanding()){
+        //     output.innerHTML = `${book.author} and ${book.url}`
+        // }
+  </script>
+</html>

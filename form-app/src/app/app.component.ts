@@ -11,8 +11,8 @@ import {User} from "../User";
 
 export class AppComponent{
   user : User = {
-    name : '',
-    password:''
+    author : '',
+    title:'',
   }
 
 
@@ -24,7 +24,6 @@ export class AppComponent{
 
 
   add(){
-    // const name =  this.nameInputRef.nativeElement.value;
     this.service.savePost(this.user as User).subscribe(
       post => {
         console.log(post)
@@ -35,7 +34,4 @@ export class AppComponent{
 showUsers(){
   this.service.getUsers().subscribe(user => console.log(user));
 }
-
-
-
 }
